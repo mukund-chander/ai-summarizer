@@ -21,8 +21,6 @@ Users can paste or type long-form notes, and the app instantly returns a concise
 ![light mode](./public/screenshots/light-mode.png)
 ![dark mode](./public/screenshots/dark-mode.png)
 
-> (You can capture real screenshots from your browser and add them to `public/screenshots/`)
-
 ---
 
 ## 🛠️ Tech Stack
