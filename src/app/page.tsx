@@ -2,9 +2,11 @@
 
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
+
 import { Textarea } from "@/components/ui/textarea";
 import { Loader2 } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { ThemeToggle } from "@/components/ThemeToggle";
 
 export default function Home() {
   const [note, setNote] = useState("");
@@ -29,10 +31,9 @@ export default function Home() {
   return (
     <main className="min-h-screen flex items-center justify-center bg-background p-6">
       <Card className="w-full max-w-2xl space-y-4 p-6">
-        <CardHeader className="text-4xl font-bold text-center">
-          <CardTitle className="text-2xl text-center">
-            📝Ai Note Summarizer
-          </CardTitle>
+        <CardHeader className="flex flex-row items-center justify-between">
+          <CardTitle className="text-2xl">📝 AI Note Summarizer</CardTitle>
+          <ThemeToggle />
         </CardHeader>
         <CardContent>
           <Textarea
@@ -44,7 +45,7 @@ export default function Home() {
           <Button
             disabled={loading}
             onClick={handleSummarize}
-            className="w-full gap-2 my-6"
+            className="w-full gap-2 my-6 cursor-pointer"
           >
             {loading && <Loader2 className="animate-spin h-4 w-4" />}
             {loading ? "Summarizing..." : "Summarize Note"}
