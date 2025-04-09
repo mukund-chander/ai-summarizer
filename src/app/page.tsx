@@ -32,11 +32,11 @@ export default function Home() {
           {" "}
           📝Ai Note Summarizer
         </h1>
-        <textarea
+        <Textarea
           value={note}
           onChange={(e) => setNote(e.target.value)}
           placeholder="Enter your note here..."
-          className="w-full p-2 border rounded h-40 mb-4 text-base"
+          className="min-h-[160px] text-base"
         />
         <Button
           disabled={loading}
