@@ -1,6 +1,9 @@
 "use client";
 
 import { useState } from "react";
+import { Button } from "@/components/ui/button";
+import { Textarea } from "@/components/ui/textarea";
+import { Loader2 } from "lucide-react";
 
 export default function Home() {
   const [note, setNote] = useState("");
@@ -23,28 +26,34 @@ export default function Home() {
     setLoading(false);
   };
   return (
-    <main className="max-w-2xl mx-auto mt-10 p-4">
-      <h1 className="text-2xl font-bold mb-4">Ai Note Summarizer</h1>
-      <textarea
-        value={note}
-        onChange={(e) => setNote(e.target.value)}
-        placeholder="Enter your note here..."
-        className="w-full p-2 border rounded h-40 mb-4"
-      />
-      <button
-        disabled={loading}
-        onClick={handleSummarize}
-        className="px-4 py-2 bg-blue-600 text-white rounded-xl hover:bg-blue-700 cursor-pointer"
-      >
-        {loading ? "Summarizing..." : "Summarize Note"}
-      </button>
+    <main className="min-h-screen flex items-center justify-center bg-background p-6">
+      <div className="w-full max-w-2xl space-y-6">
+        <h1 className="text-4xl font-bold text-center">
+          {" "}
+          📝Ai Note Summarizer
+        </h1>
+        <textarea
+          value={note}
+          onChange={(e) => setNote(e.target.value)}
+          placeholder="Enter your note here..."
+          className="w-full p-2 border rounded h-40 mb-4 text-base"
+        />
+        <Button
+          disabled={loading}
+          onClick={handleSummarize}
+          className="w-full gap-2"
+        >
+          {loading && <Loader2 className="animate-spin h-4 w-4" />}
+          {loading ? "Summarizing..." : "Summarize Note"}
+        </Button>
 
-      {summary && (
-        <div>
-          <h2>Summary:</h2>
-          <p>{summary}</p>
-        </div>
-      )}
+        {summary && (
+          <div className="rounded-lg bg-muted p-4 shadow-md transition-all duration-300 border">
+            <h2 className="text-lg font-semibold mb-2">Summary:</h2>
+            <p className="text-md leading-relaxed">{summary}</p>
+          </div>
+        )}
+      </div>
     </main>
   );
 }
