@@ -1,13 +1,19 @@
 "use client";
 
 import * as React from "react";
-import { ThemeProvider as NextThemesProvider } from "next-themes";
+import {
+  ThemeProvider as NextThemesProvider,
+  type ThemeProviderProps,
+} from "next-themes";
 
-interface Props {
+interface Props
+  extends Omit<
+    ThemeProviderProps,
+    keyof {
+      children: React.ReactNode;
+    }
+  > {
   children: React.ReactNode;
-  attribute?: "class" | "style";
-  defaultTheme?: string;
-  enableSystem?: boolean;
 }
 
 export function ThemeProvider({
