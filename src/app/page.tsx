@@ -4,6 +4,7 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { Loader2 } from "lucide-react";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
 export default function Home() {
   const [note, setNote] = useState("");
@@ -27,33 +28,36 @@ export default function Home() {
   };
   return (
     <main className="min-h-screen flex items-center justify-center bg-background p-6">
-      <div className="w-full max-w-2xl space-y-6">
-        <h1 className="text-4xl font-bold text-center">
-          {" "}
-          📝Ai Note Summarizer
-        </h1>
-        <Textarea
-          value={note}
-          onChange={(e) => setNote(e.target.value)}
-          placeholder="Enter your note here..."
-          className="min-h-[160px] text-base"
-        />
-        <Button
-          disabled={loading}
-          onClick={handleSummarize}
-          className="w-full gap-2"
-        >
-          {loading && <Loader2 className="animate-spin h-4 w-4" />}
-          {loading ? "Summarizing..." : "Summarize Note"}
-        </Button>
+      <Card className="w-full max-w-2xl space-y-4 p-6">
+        <CardHeader className="text-4xl font-bold text-center">
+          <CardTitle className="text-2xl text-center">
+            📝Ai Note Summarizer
+          </CardTitle>
+        </CardHeader>
+        <CardContent>
+          <Textarea
+            value={note}
+            onChange={(e) => setNote(e.target.value)}
+            placeholder="Enter your note here..."
+            className="min-h-[160px] text-base"
+          />
+          <Button
+            disabled={loading}
+            onClick={handleSummarize}
+            className="w-full gap-2 my-6"
+          >
+            {loading && <Loader2 className="animate-spin h-4 w-4" />}
+            {loading ? "Summarizing..." : "Summarize Note"}
+          </Button>
 
-        {summary && (
-          <div className="rounded-lg bg-muted p-4 shadow-md transition-all duration-300 border">
-            <h2 className="text-lg font-semibold mb-2">Summary:</h2>
-            <p className="text-md leading-relaxed">{summary}</p>
-          </div>
-        )}
-      </div>
+          {summary && (
+            <div className="rounded-lg bg-muted p-4 shadow-md transition-all duration-300 border">
+              <h2 className="text-lg font-semibold mb-2">Summary:</h2>
+              <p className="text-md leading-relaxed">{summary}</p>
+            </div>
+          )}
+        </CardContent>
+      </Card>
     </main>
   );
 }
